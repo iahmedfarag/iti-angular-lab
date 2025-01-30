@@ -1,0 +1,61 @@
+<app-header [title]="product ? product.title : 'PRODUCT NOT FOUND'"></app-header>
+<div class="container mt-5">
+    @if(product){
+    <div>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <img [src]="activeImage" class="img-fluid shadow-md mb-3"
+                    style="width: 400px; height: 400px; object-fit: contain;" alt="{{ product.title }}">
+
+                <div class="d-flex justify-content-center flex-wrap gap-2">
+                    @for(img of product.images; track $index){
+                    <img [src]="img" class="img-thumbnail shadow-sm"
+                        style="width: 70px; height: 70px; object-fit: cover; cursor: pointer;"
+                        alt="Product image {{ $index + 1 }}" (click)="changeImage(img)"
+                        [class.border-primary]="img === activeImage" [class.opacity-75]="img === activeImage" />
+                    }
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h1 class="fw-bold">{{ product.title }}</h1>
+                <p class="text-muted">{{ product.description }}</p>
+
+                @if(product.discountPercentage){
+                <h4 class="text-danger">Discount: {{ product.discountPercentage }}%</h4>
+                }
+
+                <div class="mb-3">
+                    <h5 class="text-secondary">Before:</h5>
+                    <h4 class="text-decoration-line-through text-muted">
+                        {{ product.price | currency: 'EGP ' }}
+                    </h4>
+                </div>
+
+                <div class="mb-3">
+                    <h5 class="text-secondary">After:</h5>
+                    <h4 class="text-primary">
+                        {{ product.price | calculatePrice:(product.discountPercentage || 100) | currency: 'EGP ' }}
+                    </h4>
+                </div>
+
+                <p>
+
+                    <strong>Rating:</strong>
+                    <span class="text-warning fs-5">
+                        {{ product.rating | starRating}}</span>
+                </p>
+                <p>
+                    <strong>Stock:</strong>
+                    <span [class.text-danger]="product.stock === 0" [class.text-success]="product.stock > 0">
+                        {{ product.stock > 0 ? product.stock + ' in stock' : 'Out of stock' }}
+                    </span>
+                </p>
+                <button class="btn btn-primary btn-lg mt-3">
+                    <i class="bi bi-cart"></i> Add to Cart
+                </button>
+            </div>
+        </div>
+    </div>
+    }
+</div>

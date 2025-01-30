@@ -1,0 +1,14 @@
+<app-header [title]="'Products Task'"></app-header>
+
+
+<div class="container my-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @for (product of products; track product.id) {
+        <app-product-item [productItem]="product"></app-product-item>
+        }@empty {
+        <div class="text-center text-secondary" style="font-size: 18px; font-style: italic;">
+            No products found!
+        </div>
+        }
+    </div>
+</div>

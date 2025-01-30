@@ -1,0 +1,30 @@
+<app-header [title]="'Todos Task'"></app-header>
+
+<div class="container mt-4">
+    <div class="mb-4 d-flex">
+        <input type="text" class="form-control me-3 shadow-sm" placeholder="Enter a new todo"
+            style="border-radius: 15px; font-size: 16px; padding: 10px;" [(ngModel)]="newTodoTitle"
+            (input)="handleInput()" />
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-danger px-4 shadow-sm" style="border-radius: 15px; font-size: 16px;"
+                [disabled]="!newTodoValid" (click)="handleReset()">
+                Reset
+            </button>
+            <button class="btn btn-outline-success px-4 shadow-sm" style="border-radius: 15px; font-size: 16px;"
+                [disabled]="!newTodoValid" (click)="handleAdd()">
+                Add
+            </button>
+        </div>
+    </div>
+
+    <ul class="list-group shadow-sm p-3">
+        @for(todo of todos; track todo.id){
+        <app-todo-item [todoItem]="todo" (handleDeleteOutput)="handleDelete($event)"
+            (toggleStatusOutput)="toggleTodoStatus($event)"></app-todo-item>
+        }@empty{
+        <div class="text-center text-secondary" style="font-size: 18px; font-style: italic;">
+            No todos available!
+        </div>
+        }
+    </ul>
+</div>

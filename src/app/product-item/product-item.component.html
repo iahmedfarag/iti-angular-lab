@@ -1,0 +1,24 @@
+<div class="col">
+    <div class="card h-100 shadow-sm border-0 rounded-4">
+        <img [src]="productItem.thumbnail" class="card-img-top rounded-top-4" alt="{{ productItem.title }}"
+            style="height: 200px; object-fit: cover;" />
+        <div class="card-body">
+            <a class="card-title fs-5 fw-bold cursor-pointer" routerLink={{productItem.id}}>
+                {{ truncateText(productItem.title,3) | uppercase }}
+            </a>
+            <p class="card-text text-muted">{{ truncateText(productItem.description,12)}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="text-primary fw-bold fs-5">{{ productItem.price | currency : "EGP " }}</span>
+                <span class="badge bg-success text-light" style="font-size: 0.9rem;">{{ productItem.stock > 0
+                    ? "In stock" : "Out of stock"
+                    }}</span>
+            </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between align-items-center bg-white border-top-0">
+            <span class="text-warning fs-5">
+                {{ productItem.rating | starRating }}
+            </span>
+            <button class="btn btn-outline-primary btn-sm">Add to Cart</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<li class="list-group-item d-flex justify-content-between align-items-center"
+    style="border-radius: 15px; margin-bottom: 10px; background: #f9f9f9; border: 1px solid #ddd;">
+    <div class="d-flex align-items-center">
+        <input type="checkbox" class="form-check-input me-3" [checked]="todoItem.completed"
+            (change)="toggleTodoStatus(todoItem.id)" />
+        <span [class.text-muted]="todoItem.completed" [class.text-decoration-line-through]="todoItem.completed"
+            style="font-size: 16px; font-weight: 500;">
+            {{ todoItem.title }}
+        </span>
+    </div>
+
+    <button class="btn btn-outline-danger btn-sm shadow-sm"
+        style="border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;"
+        (click)="handleDelete(todoItem.id)">
+        ❌
+    </button>
+</li>
