@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "todos-products": {
+    "angular-lab": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/todos-products",
+            "outputPath": "dist/angular-lab",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -66,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "todos-products:build:production"
+              "buildTarget": "angular-lab:build:production"
             },
             "development": {
-              "buildTarget": "todos-products:build:development"
+              "buildTarget": "angular-lab:build:development"
             }
           },
           "defaultConfiguration": "development"
