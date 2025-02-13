@@ -3,6 +3,7 @@ import { ProductType } from '../types/product-type';
 import { CurrencyPipe, UpperCasePipe } from '@angular/common';
 import { StarRatingPipe } from '../pipes/starRating/star-rating.pipe';
 import { RouterLink } from '@angular/router';
+import { CartService } from '../services/cart/cart.service';
 
 @Component({
   selector: 'app-product-item',
@@ -12,7 +13,11 @@ import { RouterLink } from '@angular/router';
 })
 export class ProductItemComponent {
   @Input() productItem!: ProductType;
+  constructor(private cartService: CartService) {}
 
+  addToCart() {
+    this.cartService.addToCart(this.productItem);
+  }
   truncateText(text: string, wordLimit: number): string {
     const words = text.split(' ');
     if (words.length > wordLimit) {
